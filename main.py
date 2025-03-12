@@ -2,8 +2,20 @@ from flask import Flask, render_template, request, send_from_directory, redirect
 import yt_dlp
 from yt_dlp.utils import DownloadError, ExtractorError, PostProcessingError
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
+import os
+secret_key = os.environ.get('SECRET_KEY')
+if secret_key is None:
+    print("SECRET_KEY is not set.")
+else:
+    print("SECRET_KEY retrieved successfully.")
+a = os.getenv('APPLE')
+print(a)
+
 DOWNLOAD_FOLDER = 'downloads'
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
@@ -75,4 +87,4 @@ def download(filename):
     return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
