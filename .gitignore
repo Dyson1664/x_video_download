@@ -1,1 +1,7 @@
+downloads/
+*.mp4
+*.ytdl
+*.part
+__pycache__/
+*.pyc
 .env
